@@ -22,11 +22,10 @@ var save17 = $("#17Col3");
 
 var date = $("#date")
 
+// saves data to local storage for each row
 $(save8).click( function() {
     event.preventDefault();
-    localStorage.setItem("8a", document.getElementById("8Col2").value);
- 
-    
+    localStorage.setItem("8a", document.getElementById("8Col2").value);   
 });
 
 $(save9).click(function() {
@@ -75,6 +74,7 @@ $(save17).click(function() {
     localStorage.setItem("17a", document.getElementById("17Col2").value);   
 });
 
+// retrieves local storage upon page refresh
 $(function() {
     for (let i = 0; i < 10; i++) {
                       
@@ -95,11 +95,13 @@ var dataNumbers = []
 
 $(date).text(mDate);
 
+// if time is outside planner range, all fields are red
 if ((mTime > 17) || (mTime < 8)) {
     
     $(".entry").css("background-color", "red")
 
 }
+    // if time is within planner range, sets fields to gray-past, green-present, purple-future
     else {
         for (let k = 0; k < 10; k++) {
             var numbers = [k + 8]
@@ -108,7 +110,7 @@ if ((mTime > 17) || (mTime < 8)) {
             }
             else if ((k + 8) == mTime) {
                 document.getElementById((k + 8) + "Col2").style.backgroundColor = "green"    
-            }
+            } 
             else if ((k + 8) > mTime) {
                 document.getElementById((k + 8) + "Col2").style.backgroundColor = "purple"    
             }
